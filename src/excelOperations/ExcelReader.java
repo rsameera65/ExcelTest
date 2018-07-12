@@ -17,7 +17,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelReader {
 
-	public int readExcelFile(String ExcelFilePath, String Name) throws EncryptedDocumentException,
+	public boolean readExcelFile(String ExcelFilePath, String Name) throws EncryptedDocumentException,
 			InvalidFormatException, IOException, URISyntaxException {
 
 		Workbook wb;
@@ -43,7 +43,7 @@ public class ExcelReader {
 
 			row = sh.createRow(records + 1);
 			row.createCell(0).setCellValue(Name);
-		
+
 			fos = new FileOutputStream("C:\\Users\\rpa19\\workspace\\ExcelProject\\res\\input\\testReadExcel.xlsx");
 			wb.write(fos);
 			fos.flush();
@@ -54,11 +54,11 @@ public class ExcelReader {
 			System.out.println("Number Of Registered Members : " + sh.getLastRowNum());
 			System.out.println("*****");
 
-			return sh.getLastRowNum();
+			return true;
 
 		} catch (Exception exp) {
 			exp.printStackTrace();
-			return 0;
+			return false;
 		}
 	}
 }
